@@ -14,11 +14,18 @@ app=Flask("School CS WEEK PROJECT  By Aman Adlakha 6th E")
 server_url="http://scpj.ammubhai.serv00.net/"
 #con=ms.connect(host='sql12.freesqldatabase.com',database='sql12664020',user='sql12664020',password='l4b8Hrbztq')
 #con=ms.connect(host='localhost',database='project',user='root',password='')
-con=ms.connect(host="db4free.net",database="am_project",user="project_am",password="Abc@1234")
-cur=con.cursor()
-cur.execute("CREATE TABLE IF NOT EXISTS send_mail (email varchar(255), txt varchar(255), date DATE, id INT PRIMARY KEY);")
-con.commit()
+def conec():
+	con=ms.connect(host="db4free.net",database="am_project",user="project_am",password="Abc@1234")
+	return con
+
+def curso(con):
+	cur=con.cursor()
+	cur.execute("CREATE TABLE IF NOT EXISTS send_mail (email varchar(255), txt varchar(255), date DATE, id INT PRIMARY KEY);")
+	con.commit()
+
 def check_key():
+	con=conec()
+	cur=curso(con)
 	ran=rand.randint(0,9999)
 	cur.execute("SELECT id FROM send_mail")
 	dt=cur.fetchall()
@@ -35,7 +42,9 @@ def credits():
 
 @app.route("/check_send")
 def send():
-	date=dt.date.today()
+	con=conec()
+	cur=curso(con)
+	date=dt.date.today(
 #	date="2023/11/21"
 	cur.execute("SELECT date FROM send_mail")
 	datea2=cur.fetchall()
@@ -72,6 +81,8 @@ def send():
 
 @app.route("/add",methods=["GET","POST"])
 def add():
+	con=conec()
+	cur=curso(con)
 	if request.method=="GET":
 		return render_template("add.html")
 	if request.method=="POST":
@@ -85,6 +96,8 @@ def add():
 
 @app.route("/")
 def index():
+	con=conec()
+	cur=curso(con)
 	dota=""
 	cur.execute("SELECT * FROM send_mail")
 	lal=cur.fetchall()
@@ -101,6 +114,8 @@ def index():
 
 @app.route("/clear",methods=["GET","POST"])
 def clear():
+	con=conec()
+	cur=curso(con)
 	cur.execute("SELECT * FROM send_mail")
 	lal=cur.fetchall()
 	if request.method=="GET":
@@ -119,6 +134,8 @@ def clear():
 
 @app.route("/clearall")
 def clrA():
+	con=conec()
+	cur=curso(con)
 	cur.execute("DROP TABLE send_mail")
 	con.commit()
 	cur.execute("CREATE TABLE IF NOT EXISTS send_mail (email varchar(255), txt varchar(255), date DATE, id INT PRIMARY KEY);")
