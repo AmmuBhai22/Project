@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            .template {
+                background-color:rgba(255,255,255,0.3);
+                width:80%;
+                overflow: auto;
+                border-radius:40px;
+                border-color: #B17BDB;
+                padding:1px;
+                border-style:solid;
+                border-width:5px;
+                margin-top:10%;
+                margin-left:auto;
+                margin-right:auto;
+            }
+            
+            body {
+background-image: url("/static/bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+                color: white;
+                
+                
+            }
+            
+                
+            
+            
+        </style>
+        <title>ALL REMINDERS</title>
+    </head>
+<body>
+    <div class="template" ><h3><center><a href="/add"><h3>ADD NEW REMINDER <span class="material-symbols-rounded">add_task</span></h3></a></center></center></div><br><br>
+    <div class="template" ><h3><center><a href="/clear"><h3>DELETE REMINDERS <span class="material-symbols-rounded">clear_all</span></h3></a></center></center></div><br><br>
+    {{dta | safe}}
+</form>
+</body>
+</html>
